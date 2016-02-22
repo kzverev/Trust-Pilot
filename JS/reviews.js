@@ -1,15 +1,47 @@
+var getRatingImagePath = function(property) {
+	switch (property) {
+			case "1":
+				return "img/1-star.png";
+			case "2":
+				return "img/2-stars.png";
+			case "3":
+				return "img/3-stars.png";
+			case "4":
+				return "img/4-stars.png";
+			case "5":
+				return "img/5-stars.png";
+			default:
+				break;
+		}
+};
 
+var getRatingHeader = function(score) {
+	switch (score) {
+			case "1":
+				return "Bad";
+			case "2":
+				return "Poor";
+			case "3":
+				return "Average";
+			case "4":
+				return "Goog";
+			case "5":
+				return "Best";
+			default:
+				break;
+		}
+}
 
 var HeadInfo = React.createClass({
 	render: function () {
 		return (
 			<div className="headInfo">
 				<div className="wrap1">
-					<h2 className="score">{this.props.score}</h2>
-					<img className="stars" src="img/3-stars.png" />
+					<h2 className="score">{getRatingHeader(this.props.data.score)}</h2>
+					<img className="stars" src={getRatingImagePath(this.props.data.score)} />
 		    </div>
 			  <div className="wrap2">
-		      <p>Based on {this.props.reviewsNumber} reviews. See some of the reviews here.</p>
+		      <p>Based on <span className="reviewsNumber">{this.props.data.reviewsNumber}</span> reviews. See some of the reviews here.</p>
 		      <img className="logo" src="img/trustpilot-logo-light.png" />
 				</div>
 			</div>
@@ -23,30 +55,10 @@ var HeadInfo = React.createClass({
 
 var ReviewBody = React.createClass({
 	render: function () {
-		var rateImage;
-		switch (this.props.starRating) {
-			case "1":
-				rateImage = "img/1-star.png";
-				break;
-			case "2":
-				rateImage = "img/2-stars.png";
-				break;
-			case "3":
-				rateImage = "img/3-stars.png";
-				break;
-			case "4":
-				rateImage = "img/4-stars.png";
-				break;
-			case "5":
-				rateImage = "img/5-stars.png";
-				break;
-			default:
-				break;
-		}
 		return (
 			<div className="review-body">
 				<h3 className="name">{this.props.fullname}</h3>
-				<img className="stars" src={rateImage} /> 
+				<img className="stars" src={getRatingImagePath(this.props.starRating)} /> 
 				<div className="date">{jQuery.timeago(this.props.date)}</div>
 				<p className="review-name">{this.props.reviewTitle}</p>
 				<p className="review-text">{this.props.reviewBody}</p>
@@ -57,7 +69,7 @@ var ReviewBody = React.createClass({
 
 var ReviewsWrapper = React.createClass({
 	render:function () {
-		var review = this.props.reviews.map(function(query) {
+		var review = this.props.data.reviews.map(function(query) {
 			return (
 				<ReviewBody fullname={query.fullName} starRating={query.starRating} reviewTitle={query.reviewTitle} reviewBody={query.reviewBody} date={query.date} key={query.firstName} />
 			);
@@ -74,8 +86,8 @@ var Widget = React.createClass({
 	render:function () {
 		return (
 			<div className="widget">
-				<HeadInfo />
-				<ReviewsWrapper reviews = {reviews}/>
+				<HeadInfo data = {data}/>
+				<ReviewsWrapper data = {data}/>
 			</div>
 		)
 	}
@@ -85,7 +97,10 @@ var Widget = React.createClass({
 
 
 
-var reviews =[  
+var data = {
+	score: "3",
+	reviewsNumber: 359,
+	reviews: [  
   {  
     firstName:"Simon",
     lastName:"Lock",
@@ -136,14 +151,14 @@ var reviews =[
     starRating:"1",
     date:"2016-02-14T11:01:28Z"
   },
+]};
 
-];
 
 
 
 
 ReactDOM.render(
-  <Widget reviews = {reviews}/>,
+  <Widget data = {data}/>,
   document.getElementById('main-wrapper')
 );
 

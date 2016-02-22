@@ -32,13 +32,14 @@ p {
 }
 
 .headInfo .wrap2 {
-	margin-top: -5px;
+	margin-top: -25px;
 }
 
 
 .wrap1 h2, .wrap1 img {
 	display: inline-block;
 	vertical-align: middle;
+	margin-right: 10px;
 }
 
 .wrap2 p, .wrap2 img  {
@@ -50,6 +51,14 @@ p {
 .wrap2 p {
 	margin-right: 7px;
 }
+
+.reviewsNumber {
+	color: grey;
+	font-size: 1em;
+	font-weight: 600;
+}
+
+
 /***********REVIEWS CONTAINER************/
 
 .reviews-wrapper {
