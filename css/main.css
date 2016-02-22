@@ -1,0 +1,114 @@
+/***********GENERAL************/
+
+#main-wrapper {
+	width: 500px;
+	max-height: 500px;
+	margin-left: 15px;
+}
+
+p {
+	font-size: 13px;
+}
+
+.stars {
+	width: 140px;
+}
+
+.date {
+	color: #bfbfbf;
+	font-size: 10px;
+	float: right;
+	vertical-align: middle;
+}
+
+/***********HEADER************/
+
+.widget {
+	margin-top: 20px;
+}
+
+.headInfo .wrap1, .headInfo .wrap2  {
+	text-align: center;
+}
+
+.headInfo .wrap2 {
+	margin-top: -5px;
+}
+
+
+.wrap1 h2, .wrap1 img {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.wrap2 p, .wrap2 img  {
+	display: inline-block;
+	vertical-align: middle;
+	color: #bfbfbf;
+}
+
+.wrap2 p {
+	margin-right: 7px;
+}
+/***********REVIEWS CONTAINER************/
+
+.reviews-wrapper {
+	background-color: #f2f2f2;
+	padding-top: 2px; 
+	padding-bottom: 2px;
+}
+
+.name {
+	font-size: 0.8em;
+	color: #808080;
+}
+
+.review-name {
+	font-weight: 600;
+	color: #000;
+}
+
+.review-body {
+	background-color: #fff;
+	padding: 15px;
+	padding-bottom: 0;
+	margin: 10px 10px 10px 10px;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.company-reply {
+	background-color: #fff;
+	padding: 5px 15px 15px 20px;
+	margin: 0px 10px 10px 10px;
+	border: 1px solid #fff;
+	border-left: 4px solid #b3b3b3;
+}
+
+.reply-name {
+	font-weight: 600;
+	color: #808080;
+	display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.reply img, .reply span {
+	  vertical-align: middle;
+}
+
+.reply-text {
+	margin-top: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
