@@ -83,86 +83,45 @@ var ReviewsWrapper = React.createClass({
 });
 
 var Widget = React.createClass({
+	loadReviewsFromServer: function() {
+		$.ajax({
+			url: this.props.url,
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				this.setState(data);
+			}.bind(this),
+			error: function(xhr, status, err) {
+		        console.error(this.props.url, status, err.toString());
+		    }.bind(this)
+		});
+	},
+	getInitialState: function() {
+		return {
+			score: "",
+            reviewsNumber: 0,
+            reviews: []
+		}
+	},
+	componentDidMount: function() {
+		this.loadReviewsFromServer();
+		// "setInterval(this.loadReviewsFromServer, this.props.pollinterval);"
+	},
 	render:function () {
 		return (
 			<div className="widget">
-				<HeadInfo data = {data}/>
-				<ReviewsWrapper data = {data}/>
+				<HeadInfo data = {this.state}/>
+				<ReviewsWrapper data = {this.state}/>
 			</div>
 		)
 	}
 })
 
 
-
-
-
-var data = {
-	score: "3",
-	reviewsNumber: 359,
-	reviews: [  
-  {  
-    firstName:"Simon",
-    lastName:"Lock",
-    fullName:"Simon Lock",
-    location:"Kolding",
-    reviewTitle:"Super quality.. I will show here again!",
-    reviewBody:"Super nice quality, fast devilery, good prices. I will shop here again!",
-    starRating:"5",
-    date:"2016-02-22T12:13:28Z"
-  },
-  {  
-    firstName:"Gav",
-    lastName:"",
-    fullName:"Gav",
-    location:"",
-    reviewTitle:"Princely Sum",
-    reviewBody:"A decent local curry house in Faversham, Kent known for its Elvis nights.",
-    starRating:"4",
-    date:"2016-01-21T15:11:28Z"
-  },
-  {  
-    firstName:"Justin",
-    lastName:"Wright",
-    fullName:"Justin Wright",
-    location:"London, GB",
-    reviewTitle:"Good Services",
-    reviewBody:"A decent place to introduce your taste buds to fiery Indian fare",
-    starRating:"3",
-    date:"2016-01-13T09:11:28Z"
-  },
-  {  
-    firstName:"Erika",
-    lastName:"Wolfe",
-    fullName:"Erika Wolfe",
-    location:"Gothenburg, SE",
-    reviewTitle:"Nightmare experience - no product, no communication, no refund; improved by rapid resolution",
-    reviewBody:" a refund because Infurn could neither deliver my chairs nor give me a solid date about when I might receive them when I inquired about a delivery date. They finally offered me a refund - which I accepted on 14 December 2012.",
-    starRating:"2",
-    date:"2016-01-14T19:11:28Z"
-  },
-  {  
-    firstName:"Hugo",
-    lastName:"Beja",
-    fullName:"Hugo Beja",
-    location:"Praia Da Barra, PT",
-    reviewTitle:"FRAUD",
-    reviewBody:"Communication ZERO, they simply ignous to prove our order to be pairs!!! LOL and just stopped communicating... their website is constantly down... probably to make lose interest and rest your forces to recover what you paid for!!",
-    starRating:"1",
-    date:"2016-02-14T11:01:28Z"
-  },
-]};
-
-
-
-
-
 ReactDOM.render(
-  <Widget data = {data}/>,
+  <Widget url="/API/reviewsData.json" pollInterval={2000} />,
   document.getElementById('main-wrapper')
 );
-
-
 
 
 
