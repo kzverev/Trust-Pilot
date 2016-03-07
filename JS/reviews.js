@@ -119,7 +119,7 @@ var Widget = React.createClass({
 
 
 ReactDOM.render(
-  <Widget url="/API/reviewsData.json" pollInterval={2000} />,
+  <Widget url="API/reviewsData.json" pollInterval={2000} />,
   document.getElementById('main-wrapper')
 );
 
